@@ -1,7 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
-const path = require('path');
 const server = express();
 
 const db = require('./backend/db/Conn')
@@ -14,71 +12,13 @@ server.use(express.json());
 server.use(cors());
 
 // -------------------------------------
-// Configuração do multer para o armazenamento de arquivos
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // Define o diretório de destino no servidor Plesk
-    cb(null, './images/');
-  },
-  filename: (req, file, cb) => {
-    // Define o nome do arquivo
-    cb(null, Date.now() + path.extname(file.originalname)); // Adiciona timestamp ao nome do arquivo
-  }
-});
 
-const upload = multer({ storage: storage });
-
-// Endpoint para upload da imagem
-server.post('/images', upload.single('image'), (req, res) => {
-  // O arquivo estará disponível em req.file
-  if (!req.file) {
-    return res.status(400).send('Nenhuma imagem foi enviada.');
-  }
-  res.send({
-    message: 'Imagem carregada com sucesso!',
-    file: req.file
-  });
-});
-
-// -------------------------------------
-
-// Cadastrar Artigo
-server.post('/articles', async (req, res) => {
-    const { title, cover, category, content, author, summary, slug, published } = req.body;
+// Apagar o Artigo por slug
+server.delete('/articles/slug/:slug', async (req, res) => {
+    const { slug } = req.params;
 
     try {
-        const article = await Article.create({ title, cover, category, content, author, summary, slug, published });
-        res.status(201).json(article);
-    } catch (error) {
-        console.error('Erro ao cadastrar artigo:', error);
-        res.status(500).json({ error: 'Erro ao cadastrar artigo' });
-    }
-});
-
-// Atualizar Artigo por TITLE
-server.put('/articles/title/:title', async (req, res) => {
-    const { title } = req.params;
-    const { cover, category, content, author, summary, slug, published } = req.body;
-
-    try {
-        const article = await Article.findOne({ where: { title } });
-        if (!article) {
-            return res.status(404).json({ error: 'Artigo não encontrado' });
-        }
-        await article.update({ cover, category, content, author, summary, slug, published });
-        res.json({ message: 'Artigo atualizado com sucesso' });
-    } catch (error) {
-        console.error('Erro ao atualizar artigo:', error);
-        res.status(500).json({ error: 'Erro ao atualizar artigo' });
-    }
-});
-
-// Apagar o Artigo por TITLE
-server.delete('/articles/title/:title', async (req, res) => {
-    const { title } = req.params;
-
-    try {
-        const article = await Article.findOne({ where: { title } });
+        const article = await Article.findOne({ where: { slug } });
         if (!article) {
             return res.status(404).json({ error: 'Artigo não encontrado' });
         }
@@ -90,12 +30,30 @@ server.delete('/articles/title/:title', async (req, res) => {
     }
 });
 
-// Buscar Artigo por TITLE
-server.get('/articles/title/:title', async (req, res) => {
-    const { title } = req.params;
+// Atualizar Artigo por slug
+server.put('/articles/slug/:slug', async (req, res) => {
+    const { slug } = req.params;
+    const { cover, category, content, author, summary, title, published } = req.body;
 
     try {
-        const article = await Article.findOne({ where: { title } });
+        const article = await Article.findOne({ where: { slug } });
+        if (!article) {
+            return res.status(404).json({ error: 'Artigo não encontrado' });
+        }
+        await article.update({ cover, category, content, author, summary, title, published });
+        res.json({ message: 'Artigo atualizado com sucesso' });
+    } catch (error) {
+        console.error('Erro ao atualizar artigo:', error);
+        res.status(500).json({ error: 'Erro ao atualizar artigo' });
+    }
+});
+
+// Buscar Artigo por SLUG
+server.get('/articles/slug/:slug', async (req, res) => {
+    const { slug } = req.params;
+
+    try {
+        const article = await Article.findOne({ where: { slug } });
         if (!article) {
             return res.status(404).json({ error: 'Artigo não encontrado' });
         }
@@ -103,6 +61,34 @@ server.get('/articles/title/:title', async (req, res) => {
     } catch (error) {
         console.error('Erro ao buscar artigo:', error);
         res.status(500).json({ error: 'Erro ao buscar artigo' });
+    }
+});
+
+
+
+// Buscar Artigo que contenha no TITLE
+server.get('/articles/title/:title', async (req, res) => {
+    const { title } = req.params;
+
+    try {
+        const articles = await Article.findAll({ where: { title: { [db.Sequelize.Op.like]: `%${title}%` } } });
+        res.json(articles);
+    } catch (error) {
+        console.error('Erro ao buscar artigos:', error);
+        res.status(500).json({ error: 'Erro ao buscar artigos' });
+    }
+});
+
+// Cadastrar Artigo
+server.post('/articles', async (req, res) => {
+    const { title, cover, category, content, author, summary, slug, published } = req.body;
+
+    try {
+        const article = await Article.create({ title, cover, category, content, author, summary, slug, published });
+        res.status(201).json(article);
+    } catch (error) {
+        console.error('Erro ao cadastrar artigo:', error);
+        res.status(500).json({ error: 'Erro ao cadastrar artigo' });
     }
 });
 
