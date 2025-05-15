@@ -64,8 +64,6 @@ server.get('/articles/slug/:slug', async (req, res) => {
     }
 });
 
-
-
 // Buscar Artigo que contenha no TITLE
 server.get('/articles/title/:title', async (req, res) => {
     const { title } = req.params;

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - News Nexus</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-container" class="login-container">
+        <h1>Admin - News Nexus</h1>
+        <form id="login-form">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" placeholder="Digite seu usuário" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" placeholder="Digite sua senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="error-message" class="error-message"></p>
+    </div>
+
+    <div id="admin-container" class="admin-container hidden">
+        <h1>Painel de Administração</h1>
+        <button id="logout-button">Sair</button>
+        <section id="manage-articles">
+            <h2>Gerenciar Matérias</h2>
+            <form id="article-form">
+                <input type="hidden" id="article-id">
+                <label for="title">Título:</label>
+                <input type="text" id="title" placeholder="Título da matéria" required>
+                <label for="cover">Capa (URL):</label>
+                <input type="text" id="cover" placeholder="URL da imagem de capa" required>
+                <label for="category">Categoria:</label>
+                <input type="text" id="category" placeholder="Categoria da matéria" required>
+                <label for="content">Conteúdo:</label>
+                <textarea id="content" placeholder="Conteúdo da matéria" required></textarea>
+                <label for="author">Autor:</label>
+                <input type="text" id="author" placeholder="Autor da matéria" required>
+                <label for="summary">Resumo:</label>
+                <textarea id="summary" placeholder="Resumo da matéria" required></textarea>
+                <button type="submit">Salvar</button>
+            </form>
+            <div id="articles-list">
+                <!-- Lista de matérias será carregada aqui -->
+            </div>
+        </section>
+    </div>
+</body>
+</html>
