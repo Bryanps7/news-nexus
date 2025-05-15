@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchNews(query = '') {
         try {
             const url = query
-                ? `http://localhost:3000/articles/title/${query}`
-                : 'http://localhost:3000/articles';
+                ? `https://news.eternalnexus.online/articles/title/${query}`
+                : 'https://news.eternalnexus.online/articles';
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Erro ao buscar notícias');

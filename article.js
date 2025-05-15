@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para buscar a notícia específica
     async function fetchArticle() {
         try {
-            const response = await fetch(`http://localhost:3000/articles/slug/${slug}`);
+            const response = await fetch(`https://news.eternalnexus.online/articles/slug/${slug}`);
             if (!response.ok) {
                 throw new Error('Erro ao buscar a notícia');
             }
