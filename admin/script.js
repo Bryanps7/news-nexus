@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
 
-    const API_URL = 'http://localhost:3000/articles';
+    const API_URL = 'https://news.eternalnexus.online/articles';
 
     // Login
     loginForm.addEventListener('submit', (e) => {
