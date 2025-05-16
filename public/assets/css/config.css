@@ -1,0 +1,9 @@
+
+:root {
+  --nn-blue-dark: #0A1A3E;       /* Azul Marinho - Principal */
+  --nn-blue: #1F3A93;            /* Azul Aço - Destaques */
+  --nn-blue-gray: #4B6280;       /* Cinza Azulado - Fundo leve */
+  --nn-gray-light: #D1D5DB;      /* Cinza Claro - Bordas, divisores */
+  --nn-white-soft: rgb(249, 250, 251);      /* Branco Suave - Fundo principal */
+  --nn-black-deep: #121212;      /* Preto Profundo - Textos e contraste */
+}

@@ -33,12 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
             newsCard.classList.add('news-card');
 
             newsCard.innerHTML = `
-                <img src="${article.cover}" alt="${article.title}">
-                <div class="news-content">
-                    <h2>${article.title}</h2>
-                    <p>${article.summary}</p>
-                    <a href="article.html?slug=${article.slug}">Leia mais</a>
-                </div>
+                <a href="article.html?slug=${article.slug}">
+                    <img src="${article.cover}" alt="${article.title}">
+                    <div class="news-content">
+                        <h2>${article.title}</h2>
+                        <p>${article.summary}</p>
+                        <a href="article.html?slug=${article.slug}">Leia mais</a>
+                    </div>
+                </a>
             `;
 
             newsContainer.appendChild(newsCard);

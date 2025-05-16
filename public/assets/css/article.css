@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--nn-white);
+    color: var(--nn-black-deep);
+    overflow-x: hidden;
+}
+
+header {
+    background-color: var(--nn-blue-dark);
+    color: var(--nn-white-soft);
+    text-align: center;
+    padding: 20px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+i {
+    color: var(--nn-white);
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.search-bar input {
+    width: 60%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 1rem;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--nn-blue-gray);
+    color: var(--nn-white);
+    font-size: 1rem;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: var(--nn-blue);
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.news-card {
+    background: var(--nn-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.news-card:hover {
+    transform: scale(1.02);
+}
+
+.news-card img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    text-align: center;
+}
+
+.news-card .news-content {
+    padding: 15px;
+}
+
+.news-card h2 {
+    font-size: 1.5rem;
+    margin: 0 0 10px;
+}
+
+.news-card p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.news-card a {
+    text-decoration: none;
+    color: var(--nn-blue-dark);
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: var(--nn-white);
+    margin-top: 20px;
+}
+
+#article-container img {
+    width: 100%;
+}
+
+main {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+}
+
+article {
+    width: 70%;
+}
+
+/* article */

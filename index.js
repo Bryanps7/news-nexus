@@ -11,6 +11,8 @@ server.use(express.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(cors());
 
+server.use(express.static('public'));
+
 // -------------------------------------
 
 // Apagar o Artigo por slug
@@ -101,10 +103,18 @@ server.get('/articles', async (req, res) => {
     }
 });
 
-// -------------------------------------
-// Teste
-server.get('/', (req, res) => {
-    res.send('Hello World!');
+// Buscar Todas as Categorias
+server.get('/articles/categories', async (req, res) => {
+    try {
+        const categories = await Article.findAll({
+            attributes: ['category'],
+            group: ['category'],
+        });
+        res.json(categories);
+    } catch (error) {
+        console.error('Erro ao buscar categorias:', error);
+        res.status(500).json({ error: 'Erro ao buscar categorias' });
+    }
 });
 
 // -------------------------------------
