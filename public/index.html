@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/img/icon.svg" type="image/x-icon">
+    <!-- Meta tags permanecem iguais -->
+    <!-- Adicionar Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Adicionar Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <script src="./assets/js/script.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="stylesheet" href="./assets/css/config.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    
-    <title>News Nexus</title>
 </head>
 <body>
-    <header>
-        <img src="./assets/img/logo-icon-tipografia-branca.png" alt="Logo News Nexus">
+    <header class="header">
+        <img src="./assets/img/logo-icon-tipografia-branca.png" alt="Logo News Nexus" class="logo">
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Pesquise por título ou texto...">
-            <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" id="search-input" placeholder="Pesquise por título ou texto..." class="search-input">
+            <button id="search-button" class="search-button">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </div>
     </header>
-    <main>
-        <div id="news-container" class="news-container">
-            <!-- As notícias serão carregadas aqui dinamicamente -->
+    
+    <main class="main-content">
+        <div id="news-container" class="news-grid">
+            <!-- Notícias serão carregadas aqui -->
         </div>
     </main>
-    <footer>
+
+    <footer class="footer">
         <p>&copy; 2025 News Nexus. Todos os direitos reservados.</p>
     </footer>
 </body>

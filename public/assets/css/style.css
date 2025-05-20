@@ -1,109 +1,257 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--nn-white);
-    color: var(--nn-black-deep);
+:root {
+    --nn-blue-dark: #2c3e50;
+    --nn-blue: #3498db;
+    --nn-white: #ffffff;
+    --nn-gray-light: #ecf0f1;
+    --nn-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    --nn-shadow: 0 8px 30px rgba(0,0,0,0.12);
 }
 
-header {
-    background-color: var(--nn-blue-dark);
-    color: var(--nn-white-soft);
-    text-align: center;
-    padding: 20px 10px;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--nn-gray-light);
+    line-height: 1.6;
+    color: #333;
+}
+
+.header {
+    background: var(--nn-gradient);
+    padding: 1.5rem 2rem;
+    box-shadow: var(--nn-shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-i {
-    color: var(--nn-white);
+.logo {
+    height: 50px;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(-5deg) scale(1.05);
 }
 
 .search-bar {
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    gap: 0.5rem;
 }
 
-.search-bar input {
-    width: 60%;
-    padding: 10px;
+.search-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
     border: none;
-    border-radius: 5px 0 0 5px;
-    font-size: 1rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
-.search-bar button {
-    padding: 10px 20px;
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+.search-button {
+    background: var(--nn-white);
     border: none;
-    background-color: var(--nn-blue-gray);
-    color: var(--nn-white);
-    font-size: 1rem;
-    border-radius: 0 5px 5px 0;
+    width: 55px;
+    border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
-.search-bar button:hover {
-    background-color: var(--nn-blue);
+.search-button:hover {
+    background: var(--nn-blue);
+    transform: rotate(90deg) scale(1.1);
 }
 
-.news-container {
+.search-button i {
+    color: var(--nn-blue-dark);
+    font-size: 1.2rem;
+}
+
+.news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .news-card {
     background: var(--nn-white);
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: var(--nn-shadow);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%);
+    z-index: 1;
 }
 
 .news-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
 
 .news-card img {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-    text-align: center;
-}
-
-.news-card .news-content {
-    padding: 15px;
-}
-
-.news-card h2 {
-    font-size: 1.5rem;
-    margin: 0 0 10px;
-}
-
-.news-card p {
-    font-size: 1rem;
-    color: #666;
-    margin: 0 0 10px;
-}
-
-.news-card a {
-    text-decoration: none;
-    color: var(--nn-blue-dark);
-    font-weight: bold;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: var(--nn-white);
-    margin-top: 20px;
-}
-
-#article-container img {
     width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.news-card:hover img {
+    transform: scale(1.04);
+}
+
+.news-content {
+    padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.news-content h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.7rem 0;
+    color: var(--nn-blue-dark);
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.news-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.2rem;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-content a {
+    align-self: flex-start;
+    background: var(--nn-blue);
+    color: var(--nn-white);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.news-content a:hover {
+    background: var(--nn-blue-dark);
+}
+
+.footer {
+    background: var(--nn-gradient);
+    color: var(--nn-white);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+    }
+    
+    .logo {
+        height: 40px;
+        margin-bottom: 1rem;
+    }
+    
+    .search-input {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .news-grid {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .news-content {
+        padding: 1.5rem;
+    }
+    
+    .news-content h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .news-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+    .news-card {
+        border-radius: 10px;
+    }
+    .news-card img {
+        height: 180px;
+    }
+    .news-content {
+        padding: 1rem;
+    }
+    .news-content h2 {
+        font-size: 1.1rem;
+    }
+    .news-content p {
+        font-size: 0.97rem;
+    }
+    .footer {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+    .header {
+        padding: 0.7rem;
+    }
+    .logo {
+        height: 32px;
+        margin-bottom: 0.7rem;
+    }
+    .search-bar {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+    .search-input {
+        padding: 0.7rem 1rem;
+        font-size: 0.97rem;
+        border-radius: 20px;
+    }
+    .search-button {
+        width: 45px;
+        font-size: 1rem;
+    }
 }

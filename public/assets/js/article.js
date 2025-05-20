@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para buscar a notícia específica
     async function fetchArticle() {
         try {
-            const response = await fetch(`https://news.eternalnexus.online/articles/slug/${slug}`);
+            // const response = await fetch(`https://news.eternalnexus.online/articles/slug/${slug}`);
+            const response = await fetch(`http://localhost:3000/articles/slug/${slug}`);
             if (!response.ok) {
                 throw new Error('Erro ao buscar a notícia');
             }
@@ -23,11 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para exibir a notícia
     function displayArticle(article) {
         articleContainer.innerHTML = `
-            <h1>${article.title}</h1>
-            <img src="${article.cover}" alt="${article.title}">
-            <p><strong>Autor:</strong> ${article.author}</p>
-            <p><strong>Categoria:</strong> ${article.category}</p>
-            <p>${article.content}</p>
+            <div class="article-cover-wrapper">
+                <img src="${article.cover}" alt="${article.title}" class="article-cover">
+            </div>
+            <div class="article-content-wrapper">
+                <h1 class="article-title">${article.title}</h1>
+                <div class="article-meta">
+                    <span><i class="fa-solid fa-user"></i> ${article.author}</span>
+                    <span><i class="fa-solid fa-tag"></i> ${article.category}</span>
+                </div>
+                <div class="article-content">
+                    ${article.content}
+                </div>
+            </div>
         `;
     }
 

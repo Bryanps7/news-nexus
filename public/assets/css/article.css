@@ -121,4 +121,85 @@ article {
     width: 70%;
 }
 
-/* article */
+/* Estilo específico para a página de matéria do News Nexus */
+
+.article-container {
+    max-width: 800px;
+    margin: 2.5rem auto 2rem auto;
+    background: var(--nn-white);
+    border-radius: 18px;
+    box-shadow: var(--nn-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 2rem 0;
+}
+
+.article-cover-wrapper {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background: var(--nn-gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.article-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.article-content-wrapper {
+    padding: 2rem 2.5rem 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.article-title {
+    font-size: 2.1rem;
+    color: var(--nn-blue-dark);
+    font-weight: 700;
+    margin: 1.2rem 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.article-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: #888;
+    font-size: 1rem;
+    align-items: center;
+}
+
+.article-meta i {
+    margin-right: 0.4rem;
+    color: var(--nn-blue);
+}
+
+.article-content {
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    word-break: break-word;
+}
+
+@media (max-width: 900px) {
+    .article-container {
+        max-width: 98vw;
+        margin: 1.2rem auto;
+    }
+    .article-content-wrapper {
+        padding: 1.2rem 1rem 0 1rem;
+    }
+    .article-title {
+        font-size: 1.4rem;
+    }
+    .article-cover-wrapper {
+        height: 180px;
+    }
+}
